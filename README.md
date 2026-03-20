@@ -2,15 +2,19 @@
 
 This project implements an object detection pipeline to identify whether workers are wearing gloves (`glove_hand`) or not (`bare_hand`). This is designed for safety compliance systems in industrial environments.
 
+## 🚀 Live Deployment
+Check out the live interactive dashboard: **[Glove Shield AI - Streamlit Cloud](https://gloved-vs-ungloved-hand-detection-m58nfzmdrlkzjxzktms8fm.streamlit.app/)**
+
 ## Dataset
-- **Name**: Glove Hand and Bare Hand (v3)
-- **Source**: [Roboflow Universe](https://universe.roboflow.com/glove-detection-3vldq/glove-hand-and-bare-hand-zwvif/dataset/3)
-- **Classes**: `bare_hand`, `glove_hand`
-- **Total Images**: ~200 images in the validation set used for testing.
-- **Preprocessing**: 
-  - Auto-orientation of pixel data.
-  - Resizing to 640x640.
-  - Augmentations: Horizontal flip, Rotation (-15° to +15°), Brightness adjustments (-25% to +25%).
+This project utilizes a **hybrid dataset approach** for robust real-world performance:
+- **80% - Pre-trained Base**: High-quality hand imagery curated from [Roboflow Universe](https://universe.roboflow.com/glove-detection-3vldq/glove-hand-and-bare-hand-zwvif/dataset/3).
+- **10% - Manual Collection**: Field-captured imagery of workers and factory environments to improve generalization.
+- **Custom Annotation**: All manual data was annotated using the Roboflow platform to ensure consistency with the base classes: `bare_hand` and `glove_hand`.
+
+**Preprocessing**: 
+- Auto-orientation of pixel data.
+- Resizing to 640x640.
+- Augmentations: Horizontal flip, Rotation (-15° to +15°), Brightness adjustments (-25% to +25%).
 
 ## Model
 - **Architecture**: YOLOv8n (Ultralytics)
@@ -58,5 +62,9 @@ The `detection_script.py` has been enhanced with:
    - `--conf`: Confidence threshold (default: `0.25`).
 
 ## What Worked and What Didn't
-- **Worked**: YOLOv8n proved to be very efficient for this task, achieving high accuracy even with a small dataset and limited training epochs. The model distinguishes between bare hands and various types of gloves effectively.
+- **Worked**: YOLOv8n proved to be very efficient for this task. The hybrid dataset (mixing Roboflow data with manual captures) significantly helped the model handle diverse lighting conditions and backgrounds found in our specific factory environment.
 - **Challenges**: Some images with complex backgrounds or partial occlusions showed slightly lower confidence, but the overall mAP remains robust for a safety compliance baseline.
+
+## Project Documentation
+Detailed technical reasoning and implementation answers can be found in the following document:
+- **[Part 2 Answers - PDF](Part_2_Answers.pdf)**
