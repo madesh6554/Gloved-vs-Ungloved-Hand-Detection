@@ -1,0 +1,30 @@
+# Training Artifacts
+runs/
+!submission/Part_1_Glove_Detection/runs/
+
+# Dataset folders (large)
+Glove Hand and Bare Hand.v3-v2.yolov8/
+train/
+test/
+valid/
+
+# Models
+*.pt
+!submission/Part_1_Glove_Detection/weights/*.pt
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# System/IDE
+.vscode/
+.DS_Store
+.gemini/
+.agent/
+.agents/
+.brain/
+node_modules/
+
+# Submission folder is what we WANT to keep
+!submission/
